@@ -108,10 +108,10 @@ std::shared_ptr<T> BinarySearchTree<T>::findElement(std::shared_ptr<TreeNode<T>>
     }
     if (*node->value <= item && node->left != nullptr)
     {
-        findElement(node->left, std::forward(item));
+        findElement(node->left, std::forward<T>(item));
     } else if (*node->value > item && node->right != nullptr)
     {
-        findElement(node->right, std::forward(item));
+        findElement(node->right, std::forward<T>(item));
     }
 
     return nullptr;
