@@ -12,7 +12,7 @@ std::size_t bucketSort(std::vector<double>& inputArray)
         b[static_cast<int>(inputArray[i])].push_back(inputArray[i]);
     }
 
-    for (std::size_t i=0; i < inputArray.size(); ++i)
+    for (std::size_t i=0; i < b.size(); ++i)
     {
         std::sort(b[i].begin(), b[i].end());
     }
