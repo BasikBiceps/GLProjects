@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <StringHelper.h>
 
 #include "PunctuationFilterFileReader.h"
 
@@ -6,24 +7,66 @@ PunctuationFilterFileReader::PunctuationFilterFileReader(const std::string &file
     m_filePath(filePath),
     m_inputStream(std::make_unique<std::ifstream>(filePath, std::ifstream::in)) {}
 
-std::string PunctuationFilterFileReader::readNext() {
+std::string PunctuationFilterFileReader::readNext()
+{
     if (m_inputStream->is_open())
     {
-        std::string result;
-        *m_inputStream >> result;
+        std::string word;
 
-        for (const auto c : result)
+        m_stringstream >> word;
+
+        if (word.length() == 0)
         {
-            if (ispunct(c) && c != '`')
+            m_stringstream.clear();
+
+            std::string tempStr;
+
+            while (tempStr == "" && *m_inputStream)
             {
-                result.erase(std::find(result.begin(), result.end(), c));
+                std::getline(*m_inputStream, tempStr);
+            }
+
+            if(!*m_inputStream)
+            {
+                return "EOF";
+            }
+
+            m_stringstream << tempStr;
+            m_stringstream >> word;
+        }
+
+        StringHelper::strToLower(word);
+
+        for (auto it = word.begin(); it != word.end();)
+        {
+            if (word.length() == 0)
+            {
+                return "";
+            }
+
+            if (!isRightSymbol(*it))
+            {
+                auto temp = it;
+                word.erase(temp);
+                it = word.begin();
+            }
+            else
+            {
+                ++it;
             }
         }
 
-        return result;
+        return word;
     }
     else
     {
-        throw std::runtime_error("File stream is closed!");
+        throw std::runtime_error("Failed to open input file in PunctuationFileReader!");
     }
 }
+
+bool PunctuationFilterFileReader::isRightSymbol(char symbol)
+{
+    return std::isalpha(symbol)  || symbol == '`';
+}
+
+

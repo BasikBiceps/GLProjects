@@ -23,6 +23,12 @@ struct CheckerResult
 class ITextChecker
 {
 public:
+    ITextChecker() = default;
+    virtual ~ITextChecker() = default;
+
+    ITextChecker(const ITextChecker& another) = delete;
+    ITextChecker& operator = (const ITextChecker& another) = delete;
+
     virtual CheckerResult checkText(
             std::unique_ptr<IReader> reader,
             std::shared_ptr<IDictionary> dictionary,

@@ -6,7 +6,7 @@
 class IReader
 {
 public:
-    explicit IReader() = default;
+    IReader() = default;
     virtual ~IReader() = default;
 
     IReader(const IReader& another) = delete;

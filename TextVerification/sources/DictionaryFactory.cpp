@@ -25,7 +25,7 @@ std::shared_ptr<IDictionary> DictionaryFactory::createDictionary(
         auto startFill = std::chrono::high_resolution_clock::now();
         std::string word = reader->readNext();
 
-        while (word != "")
+        while (word != "EOF")
         {
             resultDictionary->addElement(word);
             word = reader->readNext();

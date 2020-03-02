@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include <fstream>
+#include <sstream>
 
 #include "interfaces/IReader.h"
 
@@ -17,6 +18,7 @@ public:
 private:
     std::unique_ptr<std::ifstream> m_inputStream;
     std::string m_filePath;
+    std::unique_ptr<std::stringstream> m_stringstream;
 };
 
 #endif //TEXTVERIFICATION_FILEREADER_H

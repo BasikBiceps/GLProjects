@@ -2,6 +2,7 @@
 #define TEXTVERIFICATION_HASHTABLEDICTIONARY_H
 
 #include <unordered_set>
+
 #include "interfaces/IDictionary.h"
 
 class HashTableDictionary : public IDictionary

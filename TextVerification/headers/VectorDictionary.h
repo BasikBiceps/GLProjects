@@ -2,7 +2,6 @@
 #define TEXTVERIFICATION_VECTORDICTIONARY_H
 
 #include <vector>
-#include <memory>
 
 #include "interfaces/IDictionary.h"
 #include "FileReader.h"
