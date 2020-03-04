@@ -8,6 +8,6 @@ set(CMAKE_CXX_STANDARD 17)
 file(GLOB_RECURSE HEADERS "headers/*.h" "headers/*.hpp")
 file(GLOB_RECURSE SOURCES "sources/*.cpp")
 
-add_executable(TextVerification main.cpp ${HEADERS} ${SOURCES} sources/StringHelper.cpp headers/StringHelper.h sources/FileSystemHelper.cpp headers/FileSystemHelper.h)
+add_executable(TextVerification main.cpp ${HEADERS} ${SOURCES})
 
 target_link_libraries(TextVerification stdc++fs)

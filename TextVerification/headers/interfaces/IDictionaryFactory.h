@@ -10,7 +10,9 @@
 enum class Dictionaries
 {
     VectorDictionary,
-    HashTableDictionary
+    HashTableDictionary,
+    SpecializedBinarySearchTreeDictionary,
+    SpecializedHashTableDictionary
 };
 
 class IDictionaryFactory

@@ -1,6 +1,8 @@
 #include "DictionaryFactory.h"
 #include "VectorDictionary.h"
 #include "HashTableDictionary.h"
+#include "BinarySearchTreeDictionary.h"
+#include "SpecializedStringHashTableDictionary.h"
 
 std::shared_ptr<IDictionary> DictionaryFactory::createDictionary(
         std::unique_ptr<IReader> reader,
@@ -17,6 +19,12 @@ std::shared_ptr<IDictionary> DictionaryFactory::createDictionary(
                 break;
             case Dictionaries::HashTableDictionary :
                 resultDictionary = std::make_shared<HashTableDictionary>();
+                break;
+            case Dictionaries::SpecializedBinarySearchTreeDictionary :
+                resultDictionary = std::make_shared<BinarySearchTreeDictionary>();
+                break;
+            case Dictionaries::SpecializedHashTableDictionary :
+                resultDictionary = std::make_shared<SpecializedStringHashTableDictionary>();
                 break;
             default:
                 return resultDictionary;

@@ -12,8 +12,11 @@
 #include "TextChecker.h"
 #include "StringHelper.h"
 
-void TextVerificationFacade::TextCheckWithVectorDictionary(const std::string &dictionaryFilePath,
-                                                           const std::string &directoryWithTextsPath)
+void TextVerificationFacade::checkText(
+        const std::string &dictionaryFilePath,
+        const std::string &directoryWithTextsPath,
+        const Dictionaries &dictionaryType,
+        std::ostream &os)
 {
     FileSystemHelper::createDirectoryIfNotExist(directoryWithTextsPath, "IncorrectWordsInTexts");
 
@@ -22,7 +25,7 @@ void TextVerificationFacade::TextCheckWithVectorDictionary(const std::string &di
     std::chrono::duration<double, std::milli> fillDictionaryDuration{};
     auto dictionary =  dictionaryFactory->createDictionary(
             std::move(dictionaryReader),
-            Dictionaries::VectorDictionary,
+            dictionaryType,
             fillDictionaryDuration);
 
     std::unique_ptr<ITextChecker> textChecker = std::make_unique<TextChecker>();
@@ -53,8 +56,8 @@ void TextVerificationFacade::TextCheckWithVectorDictionary(const std::string &di
         }
     }
 
-    std::cout << "All wor<ds checked: " << checkerResult.allWordsCounter << std::endl;
-    std::cout << "All incorrect words: " << checkerResult.incorrectWordsCounter << std::endl;
-    std::cout << "Spent time for check text: " << checkerResult.checkAllTextTime.count() << std::endl;
-    std::cout << "Spent time for fill dictionary: " << fillDictionaryDuration.count() << std::endl;
+    os << "All words checked: " << checkerResult.allWordsCounter << std::endl;
+    os << "All incorrect words: " << checkerResult.incorrectWordsCounter << std::endl;
+    os << "Spent time for check text: " << checkerResult.checkAllTextTime.count() << std::endl;
+    os << "Spent time for fill dictionary: " << fillDictionaryDuration.count() << std::endl;
 }

@@ -9,5 +9,4 @@ public:
     static void createDirectoryIfNotExist(const std::string& parentDirPath, const std::string& dirName);
 };
 
-
 #endif //TEXTVERIFICATION_FILESYSTEMHELPER_H

@@ -1,7 +1,3 @@
-//
-// Created by baxter on 20.02.20.
-//
-
 #ifndef BINARYSEARCHTREE_BINARYSEARCHTREE_H
 #define BINARYSEARCHTREE_BINARYSEARCHTREE_H
 
@@ -11,12 +7,10 @@ template <class T>
 struct TreeNode
 {
     TreeNode() = default;
-    TreeNode(std::shared_ptr<TreeNode> const& r, std::shared_ptr<TreeNode> const&l, std::shared_ptr<T>const& value)
+    TreeNode(const std::shared_ptr<TreeNode>& r, const std::shared_ptr<TreeNode>&l, const std::shared_ptr<T>& value)
             : right(r)
             , left(l)
-            , value(value)
-    {
-    }
+            , value(value) {}
 
     std::shared_ptr<TreeNode> right;
     std::shared_ptr<TreeNode> left;
@@ -24,28 +18,32 @@ struct TreeNode
 };
 
 template <class T>
-class BinarySearchTree {
+class BinarySearchTree
+{
 public:
     BinarySearchTree();
 
-    template<typename B>
+    template<class B>
     void addItem(B&& item);
-
-    template<typename B>
+    template<class B>
     std::shared_ptr<T> findElement(B&& item);
+    template<class B>
+    bool isPresent(const B& item) const;
 
     std::size_t getSize();
-    std::shared_ptr<TreeNode<T>> const& getHead();
+    const std::shared_ptr<TreeNode<T>>& getHead();
 
     void printTree(std::ostream& out);
 
 private:
-    template<typename B>
-    void addItem(std::shared_ptr<TreeNode<T>> const& head, B&& item);
+    template<class B>
+    void addItem(const std::shared_ptr<TreeNode<T>>& head, B&& item);
+    template<class B>
+    bool isPresent(const std::shared_ptr<TreeNode<T>>& node, const B& item) const;
+    template<class B>
+    std::shared_ptr<T> findElement(const std::shared_ptr<TreeNode<T>>& node, B&& item);
 
-    template<typename B>
-    std::shared_ptr<T> findElement(std::shared_ptr<TreeNode<T>> const& node, B&& item);
-    void printSubTree(std::ostream& out, std::shared_ptr<TreeNode<T>> const& node);
+    void printSubTree(std::ostream& out, const std::shared_ptr<TreeNode<T>>& node);
 
 private:
     std::shared_ptr<TreeNode<T>> m_head = nullptr;
@@ -56,8 +54,8 @@ template  <class T>
 BinarySearchTree<T>::BinarySearchTree() : m_size(0) {}
 
 template  <class T>
-template <typename B>
-void BinarySearchTree<T>::addItem(std::shared_ptr<TreeNode<T>> const& head, B&& item)
+template <class B>
+void BinarySearchTree<T>::addItem(const std::shared_ptr<TreeNode<T>>& head, B&& item)
 {
     if (head == nullptr)
     {
@@ -92,29 +90,55 @@ void BinarySearchTree<T>::addItem(B&& item)
 }
 
 template <class T>
-template<typename B>
+template<class B>
 std::shared_ptr<T> BinarySearchTree<T>::findElement(B&& item)
 {
-    return findElement(getHead(), std::forward<B>(item));
+    return isPresent(getHead(), std::forward<B>(item));
 }
 
 template <class T>
-template<typename B>
-std::shared_ptr<T> BinarySearchTree<T>::findElement(std::shared_ptr<TreeNode<T>> const& node, B&& item)
+template<class B>
+std::shared_ptr<T> BinarySearchTree<T>::findElement(const std::shared_ptr<TreeNode<T>>& node, B&& item)
 {
-    if (*node->value == item)
+    if (node != nullptr && *node->value == item)
     {
         return node->value;
     }
     if (*node->value <= item && node->left != nullptr)
     {
-        findElement(node->left, std::forward<T>(item));
+        isPresent(node->left, std::forward<T>(item));
     } else if (*node->value > item && node->right != nullptr)
     {
-        findElement(node->right, std::forward<T>(item));
+        isPresent(node->right, std::forward<T>(item));
     }
 
     return nullptr;
+}
+
+template<class T>
+template<class B>
+bool BinarySearchTree<T>::isPresent(const B& item) const
+{
+    return isPresent(m_head, item);
+}
+
+template<class T>
+template<class B>
+bool BinarySearchTree<T>::isPresent(const std::shared_ptr<TreeNode<T>>& node, const B& item) const
+{
+    if (node != nullptr && *node->value == item)
+    {
+        return true;
+    }
+    if (*node->value <= item && node->left != nullptr)
+    {
+        isPresent(node->left, item);
+    } else if (*node->value > item && node->right != nullptr)
+    {
+        isPresent(node->right, item);
+    }
+
+    return false;
 }
 
 template  <class T>
@@ -124,7 +148,7 @@ void BinarySearchTree<T>::printTree(std::ostream& out)
 }
 
 template  <class T>
-void BinarySearchTree<T>::printSubTree(std::ostream& out, std::shared_ptr<TreeNode<T>> const& node)
+void BinarySearchTree<T>::printSubTree(std::ostream& out, const std::shared_ptr<TreeNode<T>>& node)
 {
     if(node->left != nullptr)
     {
@@ -145,7 +169,7 @@ std::size_t BinarySearchTree<T>::getSize()
 }
 
 template  <class T>
-std::shared_ptr<TreeNode<T>> const& BinarySearchTree<T>::getHead()
+const std::shared_ptr<TreeNode<T>>& BinarySearchTree<T>::getHead()
 {
     return m_head;
 }
