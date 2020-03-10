@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-#include "interfaces/IDictionaryFactory.h"
+#include "Dictionaries/IDictionaryFactory.h"
 
 class TextVerificationFacade
 {

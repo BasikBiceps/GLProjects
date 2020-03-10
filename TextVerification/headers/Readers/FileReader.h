@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "interfaces/IReader.h"
+#include "IReader.h"
 
 class FileReader : public IReader
 {

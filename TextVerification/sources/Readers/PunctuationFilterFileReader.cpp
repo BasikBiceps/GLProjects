@@ -1,7 +1,7 @@
 #include <algorithm>
-#include <StringHelper.h>
+#include <Helpers/StringHelper.h>
 
-#include "PunctuationFilterFileReader.h"
+#include "Readers/PunctuationFilterFileReader.h"
 
 PunctuationFilterFileReader::PunctuationFilterFileReader(const std::string &filePath) :
     m_filePath(filePath),

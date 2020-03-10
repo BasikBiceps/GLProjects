@@ -1,6 +1,6 @@
 #include <algorithm>
 
-#include "HashTableDictionary.h"
+#include "Dictionaries/HashTableDictionary.h"
 
 bool HashTableDictionary::isPresent(const std::string &value) const
 {

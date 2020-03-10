@@ -1,4 +1,4 @@
-#include "FileReader.h"
+#include "Readers/FileReader.h"
 
 FileReader::FileReader(const std::string &filePath) :
     m_filePath(filePath),

@@ -9,9 +9,6 @@ public:
     IReader() = default;
     virtual ~IReader() = default;
 
-    IReader(const IReader& another) = delete;
-    IReader& operator = (const IReader& another) = delete;
-
     virtual std::string readNext() = 0;
 };
 

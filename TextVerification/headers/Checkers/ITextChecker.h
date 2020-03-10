@@ -26,12 +26,9 @@ public:
     ITextChecker() = default;
     virtual ~ITextChecker() = default;
 
-    ITextChecker(const ITextChecker& another) = delete;
-    ITextChecker& operator = (const ITextChecker& another) = delete;
-
     virtual CheckerResult checkText(
             std::unique_ptr<IReader> reader,
-            std::shared_ptr<IDictionary> dictionary,
+            IDictionary& dictionary,
             std::unique_ptr<std::ofstream> outputStream) = 0;
 };
 

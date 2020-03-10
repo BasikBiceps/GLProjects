@@ -1,30 +1,30 @@
-#include "DictionaryFactory.h"
-#include "VectorDictionary.h"
-#include "HashTableDictionary.h"
-#include "BinarySearchTreeDictionary.h"
-#include "SpecializedStringHashTableDictionary.h"
+#include "Dictionaries/DictionaryFactory.h"
+#include "Dictionaries/VectorDictionary.h"
+#include "Dictionaries/HashTableDictionary.h"
+#include "Dictionaries/BinarySearchTreeDictionary.h"
+#include "Dictionaries/SpecHashTableDictionary.h"
 
-std::shared_ptr<IDictionary> DictionaryFactory::createDictionary(
+std::unique_ptr<IDictionary> DictionaryFactory::createDictionary(
         std::unique_ptr<IReader> reader,
         const Dictionaries &dictionaries,
         std::chrono::duration<double, std::milli>& duration)
 {
     {
-        std::shared_ptr<IDictionary> resultDictionary;
+        std::unique_ptr<IDictionary> resultDictionary;
 
         switch (dictionaries)
         {
             case Dictionaries::VectorDictionary :
-                resultDictionary = std::make_shared<VectorDictionary>();
+                resultDictionary = std::make_unique<VectorDictionary>();
                 break;
             case Dictionaries::HashTableDictionary :
-                resultDictionary = std::make_shared<HashTableDictionary>();
+                resultDictionary = std::make_unique<HashTableDictionary>();
                 break;
-            case Dictionaries::SpecializedBinarySearchTreeDictionary :
-                resultDictionary = std::make_shared<BinarySearchTreeDictionary>();
+            case Dictionaries::BinarySearchTreeDictionary :
+                resultDictionary = std::make_unique<BinarySearchTreeDictionary>();
                 break;
-            case Dictionaries::SpecializedHashTableDictionary :
-                resultDictionary = std::make_shared<SpecializedStringHashTableDictionary>();
+            case Dictionaries::SpecHashTableDictionary :
+                resultDictionary = std::make_unique<SpecHashTableDictionary>();
                 break;
             default:
                 return resultDictionary;

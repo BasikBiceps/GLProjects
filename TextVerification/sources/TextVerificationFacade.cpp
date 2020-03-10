@@ -2,15 +2,15 @@
 #include <iostream>
 #include <filesystem>
 
-#include "FileSystemHelper.h"
-#include "interfaces/IReader.h"
-#include "FileReader.h"
-#include "DictionaryFactory.h"
-#include "interfaces/ITextChecker.h"
-#include "PunctuationFilterFileReader.h"
+#include "Helpers/FileSystemHelper.h"
+#include "Readers/IReader.h"
+#include "Readers/FileReader.h"
+#include "Dictionaries/DictionaryFactory.h"
+#include "Checkers/ITextChecker.h"
+#include "Readers/PunctuationFilterFileReader.h"
 #include "TextVerificationFacade.h"
-#include "TextChecker.h"
-#include "StringHelper.h"
+#include "Checkers/TextChecker.h"
+#include "Helpers/StringHelper.h"
 
 void TextVerificationFacade::checkText(
         const std::string &dictionaryFilePath,
@@ -51,7 +51,7 @@ void TextVerificationFacade::checkText(
             auto test = std::make_unique<PunctuationFilterFileReader>(file.path());
             checkerResult += textChecker->checkText(
                     std::move(test),
-                    dictionary,
+                    *dictionary,
                     std::move(outputFile));
         }
     }

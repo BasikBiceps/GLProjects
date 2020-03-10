@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include "interfaces/IDictionary.h"
-#include "FileReader.h"
+#include "IDictionary.h"
+#include "Readers/FileReader.h"
 
 class VectorDictionary : public IDictionary
 {

@@ -1,4 +1,4 @@
-#include "StringHelper.h"
+#include "Helpers/StringHelper.h"
 
 bool StringHelper::endsWith(const std::string &str, const std::string &suffix)
 {

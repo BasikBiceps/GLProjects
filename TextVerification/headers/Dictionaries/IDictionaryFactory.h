@@ -4,15 +4,15 @@
 #include <memory>
 #include <chrono>
 
-#include "interfaces/IDictionary.h"
-#include "interfaces/IReader.h"
+#include "Dictionaries/IDictionary.h"
+#include "Readers/IReader.h"
 
 enum class Dictionaries
 {
     VectorDictionary,
     HashTableDictionary,
-    SpecializedBinarySearchTreeDictionary,
-    SpecializedHashTableDictionary
+    BinarySearchTreeDictionary,
+    SpecHashTableDictionary
 };
 
 class IDictionaryFactory
@@ -24,7 +24,7 @@ public:
     IDictionaryFactory(const IDictionaryFactory& another) = delete;
     IDictionaryFactory& operator = (const IDictionaryFactory& another) = delete;
 
-    virtual std::shared_ptr<IDictionary> createDictionary(
+    virtual std::unique_ptr<IDictionary> createDictionary(
             std::unique_ptr<IReader> reader,
             const Dictionaries& dictionaries,
             std::chrono::duration<double, std::milli>& duration) = 0;

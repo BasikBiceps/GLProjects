@@ -2,16 +2,16 @@
 #include <iostream>
 #include <memory>
 
-#include "interfaces/IDictionaryFactory.h"
+#include "Dictionaries/IDictionaryFactory.h"
 #include "TextVerificationFacade.h"
 
 int main()
 {
-    std::cout << "SpecializedHashTableDictionary:" << std::endl;
+    std::cout << "SpecHashTableDictionary:" << std::endl;
     TextVerificationFacade::checkText(
             std::filesystem::current_path().parent_path().string() + "/dictionaries/dictionary",
             std::filesystem::current_path().parent_path().string() + "/texts/",
-            Dictionaries::SpecializedHashTableDictionary,
+            Dictionaries::SpecHashTableDictionary,
             std::cout);
 
     std::cout << "HashTableDictionary:" << std::endl;
@@ -28,11 +28,11 @@ int main()
             Dictionaries::VectorDictionary,
             std::cout);
 
-    std::cout << "SpecializedBinarySearchTreeDictionary:" << std::endl;
+    std::cout << "BinarySearchTreeDictionary:" << std::endl;
     TextVerificationFacade::checkText(
             std::filesystem::current_path().parent_path().string() + "/dictionaries/dictionary",
             std::filesystem::current_path().parent_path().string() + "/texts/",
-            Dictionaries::SpecializedBinarySearchTreeDictionary,
+            Dictionaries::BinarySearchTreeDictionary,
             std::cout);
 
     return 0;

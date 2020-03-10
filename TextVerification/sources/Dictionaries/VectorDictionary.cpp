@@ -1,4 +1,4 @@
-#include "VectorDictionary.h"
+#include "Dictionaries/VectorDictionary.h"
 #include <algorithm>
 
 void VectorDictionary::addElement(const std::string& element)

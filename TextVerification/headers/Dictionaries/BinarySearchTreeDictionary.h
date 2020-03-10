@@ -3,9 +3,9 @@
 
 #include <string>
 
-#include "SpecializedStringBinarySearchTree.h"
-#include "interfaces/IDictionary.h"
-#include "FileReader.h"
+#include "DataStructures/BinarySearchTree.h"
+#include "IDictionary.h"
+#include "Readers/FileReader.h"
 
 class BinarySearchTreeDictionary : public IDictionary
 {
@@ -14,7 +14,7 @@ public:
     void addElement(const std::string& element) final;
 
 private:
-    SpecializedStringBinarySearchTree m_dictionary;
+    BinarySearchTree m_dictionary;
 };
 
 #endif //TEXTVERIFICATION_BINARYSEARCHTREEDICTIONARY_H

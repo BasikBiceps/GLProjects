@@ -3,7 +3,7 @@
 
 #include <unordered_set>
 
-#include "interfaces/IDictionary.h"
+#include "IDictionary.h"
 
 class HashTableDictionary : public IDictionary
 {
@@ -14,6 +14,5 @@ public:
 private:
     std::unordered_set<std::string> m_dictionary;
 };
-
 
 #endif //TEXTVERIFICATION_HASHTABLEDICTIONARY_H

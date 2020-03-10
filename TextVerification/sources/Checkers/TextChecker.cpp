@@ -1,10 +1,10 @@
 #include <chrono>
 
-#include "TextChecker.h"
+#include "Checkers/TextChecker.h"
 
 CheckerResult TextChecker::checkText(
         std::unique_ptr<IReader> reader,
-        std::shared_ptr<IDictionary> dictionary,
+        IDictionary& dictionary,
         std::unique_ptr<std::ofstream> outputStream)
 {
     if (!outputStream->is_open())
@@ -28,7 +28,7 @@ CheckerResult TextChecker::checkText(
             continue;
         }
 
-        auto isPresentInDictionary = dictionary->isPresent(word);
+        auto isPresentInDictionary = dictionary.isPresent(word);
 
         if (!isPresentInDictionary)
         {

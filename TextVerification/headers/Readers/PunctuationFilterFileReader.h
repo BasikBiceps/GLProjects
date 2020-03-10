@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "interfaces/IReader.h"
+#include "Readers/IReader.h"
 
 class PunctuationFilterFileReader : public IReader
 {

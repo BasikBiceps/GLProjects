@@ -1,4 +1,4 @@
-#include "BinarySearchTreeDictionary.h"
+#include "Dictionaries/BinarySearchTreeDictionary.h"
 
 bool BinarySearchTreeDictionary::isPresent(const std::string &value) const
 {
