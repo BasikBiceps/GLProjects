@@ -2,7 +2,6 @@
 #define TEXTVERIFICATION_SPECHASHTABLEDICTIONARY_H
 
 #include "IDictionary.h"
-#include "Readers/FileReader.h"
 #include "DataStructures/SpecHashTable.h"
 
 class SpecHashTableDictionary : public IDictionary

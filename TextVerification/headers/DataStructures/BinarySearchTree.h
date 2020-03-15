@@ -20,14 +20,14 @@ private:
     {
         Node(const std::string& str)
         {
-            this->str = str;
-            this->left = nullptr;
-            this->right = nullptr;
+            value = str;
+            left = nullptr;
+            right = nullptr;
         }
 
         std::unique_ptr<Node> left;
         std::unique_ptr<Node> right;
-        std::string str;
+        std::string value;
     };
 
 private:

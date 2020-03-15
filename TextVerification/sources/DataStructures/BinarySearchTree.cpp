@@ -14,7 +14,7 @@ void BinarySearchTree::addElement(const std::string &str)
 
     while (pNode)
     {
-        if (str > pNode->str)
+        if (str > pNode->value)
         {
             if (pNode->right == nullptr)
             {
@@ -43,17 +43,12 @@ void BinarySearchTree::addElement(const std::string &str)
 
 bool BinarySearchTree::isPresent(const std::string &str) const
 {
-    if (m_head == nullptr)
-    {
-        return false;
-    }
-
     auto pNode = m_head.get();
     bool result = false;
 
     while (pNode)
     {
-        if (str > pNode->str)
+        if (str > pNode->value)
         {
             if (pNode->right == nullptr)
             {
@@ -65,7 +60,7 @@ bool BinarySearchTree::isPresent(const std::string &str) const
                 pNode = pNode->right.get();
             }
         }
-        else if (str < pNode->str)
+        else if (str < pNode->value)
         {
             if (pNode->left == nullptr)
             {

@@ -12,7 +12,8 @@ enum class Dictionaries
     VectorDictionary,
     HashTableDictionary,
     BinarySearchTreeDictionary,
-    SpecHashTableDictionary
+    SpecHashTableDictionary,
+    TrieDictionary
 };
 
 class IDictionaryFactory
@@ -24,7 +25,7 @@ public:
     IDictionaryFactory(const IDictionaryFactory& another) = delete;
     IDictionaryFactory& operator = (const IDictionaryFactory& another) = delete;
 
-    virtual std::unique_ptr<IDictionary> createDictionary(
+    virtual std::unique_ptr<IDictionary> createAndFillDictionary(
             std::unique_ptr<IReader> reader,
             const Dictionaries& dictionaries,
             std::chrono::duration<double, std::milli>& duration) = 0;

@@ -1,9 +1,6 @@
 #ifndef TEXTVERIFICATION_ITEXTCHECKER_H
 #define TEXTVERIFICATION_ITEXTCHECKER_H
 
-#include <chrono>
-#include <string>
-
 struct CheckerResult
 {
     std::size_t allWordsCounter = 0;

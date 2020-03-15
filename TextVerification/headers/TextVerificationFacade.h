@@ -4,8 +4,6 @@
 #include <string>
 #include <iostream>
 
-#include "Dictionaries/IDictionaryFactory.h"
-
 class TextVerificationFacade
 {
 public:

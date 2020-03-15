@@ -5,7 +5,6 @@
 
 #include "DataStructures/BinarySearchTree.h"
 #include "IDictionary.h"
-#include "Readers/FileReader.h"
 
 class BinarySearchTreeDictionary : public IDictionary
 {

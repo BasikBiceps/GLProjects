@@ -23,7 +23,7 @@ void TextVerificationFacade::checkText(
     std::unique_ptr<IReader> dictionaryReader = std::make_unique<FileReader>(dictionaryFilePath);
     std::unique_ptr<IDictionaryFactory> dictionaryFactory = std::make_unique<DictionaryFactory>();
     std::chrono::duration<double, std::milli> fillDictionaryDuration{};
-    auto dictionary =  dictionaryFactory->createDictionary(
+    auto dictionary = dictionaryFactory->createAndFillDictionary(
             std::move(dictionaryReader),
             dictionaryType,
             fillDictionaryDuration);

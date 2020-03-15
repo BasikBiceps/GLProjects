@@ -3,8 +3,9 @@
 #include "Dictionaries/HashTableDictionary.h"
 #include "Dictionaries/BinarySearchTreeDictionary.h"
 #include "Dictionaries/SpecHashTableDictionary.h"
+#include "Dictionaries/TrieDictionary.h"
 
-std::unique_ptr<IDictionary> DictionaryFactory::createDictionary(
+std::unique_ptr<IDictionary> DictionaryFactory::createAndFillDictionary(
         std::unique_ptr<IReader> reader,
         const Dictionaries &dictionaries,
         std::chrono::duration<double, std::milli>& duration)
@@ -25,6 +26,9 @@ std::unique_ptr<IDictionary> DictionaryFactory::createDictionary(
                 break;
             case Dictionaries::SpecHashTableDictionary :
                 resultDictionary = std::make_unique<SpecHashTableDictionary>();
+                break;
+            case Dictionaries::TrieDictionary :
+                resultDictionary = std::make_unique<TrieDictionary>();
                 break;
             default:
                 return resultDictionary;

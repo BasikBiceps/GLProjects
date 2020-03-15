@@ -2,7 +2,6 @@
 #define TEXTVERIFICATION_TEXTCHECKER_H
 
 #include <memory>
-#include <chrono>
 #include <fstream>
 
 #include "Readers/IReader.h"

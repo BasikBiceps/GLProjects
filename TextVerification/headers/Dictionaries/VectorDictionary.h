@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "IDictionary.h"
-#include "Readers/FileReader.h"
 
 class VectorDictionary : public IDictionary
 {

@@ -1,6 +1,4 @@
-#include <algorithm>
-#include <Helpers/StringHelper.h>
-
+#include "Helpers/StringHelper.h"
 #include "Readers/PunctuationFilterFileReader.h"
 
 PunctuationFilterFileReader::PunctuationFilterFileReader(const std::string &filePath) :
